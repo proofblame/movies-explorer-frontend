@@ -32,16 +32,18 @@
 
 .promo__list {
   display: flex;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 0 17px;
   list-style-type: none;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  box-sizing: border-box;
 }
 
 .promo__item {
@@ -107,5 +109,13 @@
 
   .promo__link {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 290px) {
+  .promo__list {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    flex-direction: column;
   }
 }

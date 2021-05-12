@@ -6,7 +6,7 @@
 .about__title {
   margin: 0 auto;
   width: 100%;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 22px;
@@ -29,7 +29,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   list-style-type: none;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   color: #fff;
   margin: 0 0 110px 0;
@@ -57,7 +57,7 @@
   display: grid;
   grid-template-columns: 20% 80%;
   list-style-type: none;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   margin: 0;
   padding: 0;
@@ -98,11 +98,31 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
+  .about__list {
+    grid-template-columns: 1fr;
+    margin: 0 0 60px 0;
+    gap: 56px;
+  }
+}
+
+@media screen and (max-width: 400px) {
   .about {
     padding: 70px 18px;
   }
 
+  .about__duration-title {
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .about__duration-subtitle {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 320px) {
   .about__title {
     font-size: 18px;
     line-height: 22px;
@@ -110,12 +130,6 @@
 
   .about__title::after {
     margin-bottom: 60px;
-  }
-
-  .about__list {
-    grid-template-columns: 1fr;
-    margin: 0 0 60px 0;
-    gap: 56px;
   }
 
   .about__text-title {
@@ -127,15 +141,5 @@
   .about__text-subtitle {
     font-size: 11px;
     line-height: 16px;
-  }
-
-  .about__duration-title {
-    font-size: 11px;
-    line-height: 14px;
-  }
-
-  .about__duration-subtitle {
-    font-size: 11px;
-    line-height: 13px;
   }
 }
