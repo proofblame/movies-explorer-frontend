@@ -39,6 +39,16 @@
   transform: scale(1.1);
 }
 
+.movies__not-found {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #8b8b8b;
+}
+
 @media screen and (max-width: 892px) {
   .movies {
     padding: 70px 30px 80px;
