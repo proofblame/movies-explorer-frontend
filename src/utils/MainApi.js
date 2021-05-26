@@ -126,7 +126,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'https://marokkotv.nomoredomains.icu',
+  baseUrl: 'http://marokkotv.nomoredomains.icu',
   // baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
