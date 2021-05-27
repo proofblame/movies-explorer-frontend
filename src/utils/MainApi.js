@@ -80,10 +80,13 @@ class MainApi {
     }).then((response) => this._checkRequestResult(response));
   }
 
-  addMovie(movie) {
+  addMovie(movie, jwt) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt}`,
+      },
       body: JSON.stringify({
         country: movie.country,
         director: movie.director,
@@ -100,10 +103,13 @@ class MainApi {
     }).then((response) => this._checkRequestResult(response));
   }
 
-  removeMovie(movieId) {
+  removeMovie(movieId, jwt) {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt}`,
+      },
     }).then((response) => this._checkRequestResult(response));
   }
 
@@ -120,8 +126,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'http://api.marokkotv.nomoredomains.icu',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://api.marokkotv.nomoredomains.icu',
+  // baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,

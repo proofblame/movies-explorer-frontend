@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
@@ -22,24 +22,6 @@ function MoviesCard({
     : 'card__favorite-btn';
   const cardIcon = pathname === '/movies' ? moviesIcon : 'card__close-btn';
 
-  React.useEffect(() => {
-    checkAddedCard();
-  }, [savedMovies]);
-
-  function checkAddedCard() {
-    if (savedMovies.length > 0) {
-      if (!isAddedCard) {
-        setIsAddedCard(
-          savedMovies.some(
-            (savedMovie) =>
-              savedMovie.movieId === movie.id &&
-              savedMovie.owner === currentUser._id
-          )
-        );
-      }
-    }
-  }
-
   function hadleLikeMovie() {
     if (!isAddedCard) {
       addMovie(movie);
@@ -55,6 +37,26 @@ function MoviesCard({
 
   function hadleDeleteButton() {
     removeMovie(movie._id);
+  }
+
+  React.useEffect(() => {
+    checkAddedCard();
+  }, [savedMovies, pathname, currentUser]);
+
+  function checkAddedCard() {
+    if (savedMovies.length > 0) {
+      if (savedMovies.length > 0) {
+        if (!isAddedCard) {
+          setIsAddedCard(
+            savedMovies.some(
+              (savedMovie) =>
+                savedMovie.movieId === movie.id &&
+                savedMovie.owner === currentUser._id
+            )
+          );
+        }
+      }
+    }
   }
 
   const functionIcon =

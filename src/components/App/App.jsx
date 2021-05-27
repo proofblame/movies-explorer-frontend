@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header.jsx';
@@ -17,12 +17,15 @@ import MainApi from '../../utils/MainApi';
 
 function App() {
   const history = useHistory();
+  const { pathname } = useLocation();
   const [currentUser, setCurrentUser] = React.useState({});
-  const [isLogin, setIsLogin] = React.useState(false);
+  const [isLogin, setIsLogin] = React.useState(pathname);
   const [loginError, setLoginError] = React.useState(false);
   const [registeredError, setRegisteredError] = React.useState(false);
   const [isEditError, setIsEditError] = React.useState(false);
   const [isEditDone, setIsEditDone] = React.useState(false);
+
+
 
   function checkToken() {
     const jwt = localStorage.getItem('jwt');
@@ -30,8 +33,8 @@ function App() {
       MainApi.getInfo(jwt)
         .then((userInfo) => {
           if (userInfo) {
-            setIsLogin(true);
             setCurrentUser(userInfo.data);
+            setIsLogin(true);
           }
         })
         .catch((err) => {
@@ -45,6 +48,7 @@ function App() {
   React.useEffect(() => {
     checkToken();
   }, []);
+
 
   function handleLogin(email, password) {
     MainApi.login(email, password)
@@ -100,24 +104,21 @@ function App() {
   }
 
   return (
-      <CurrentUserContext.Provider value={currentUser}>
-    <div className='app'>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className='app'>
         <Switch>
           <Route exact path='/'>
             <Header bgColor='dark' textColor='white' isLogin={isLogin} />
             <Main />
             <Footer />
           </Route>
-          {isLogin && (
           <ProtectedRoute
             exact
             path='/movies'
             component={Movies}
             isLogin={isLogin}
-            currentUser={currentUser}
+
           />
-          )}
-          {isLogin && (
           <ProtectedRoute
             exact
             path='/saved-movies'
@@ -125,8 +126,6 @@ function App() {
             isLogin={isLogin}
             currentUser={currentUser}
           />
-          )}
-          {isLogin && (
           <ProtectedRoute
             path='/profile'
             exact
@@ -138,13 +137,8 @@ function App() {
             isEditError={isEditError}
             isEditDone={isEditDone}
           />
-          )}
-
           <Route exact path='/signin'>
-            <Login
-              handleLogin={handleLogin}
-              loginError={loginError}
-            />
+            <Login handleLogin={handleLogin} loginError={loginError} />
           </Route>
           <Route exact path='/signup'>
             <Register
@@ -152,14 +146,12 @@ function App() {
               registeredError={registeredError}
             />
           </Route>
-          {isLogin && (
-          <ProtectedRoute path='*'>
+          <Route path='*'>
             <NotFound />
-          </ProtectedRoute>
-          )}
+          </Route>
         </Switch>
-    </div>
-      </CurrentUserContext.Provider>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
