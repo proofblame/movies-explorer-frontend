@@ -47,6 +47,7 @@ function Register({ handleRegister, registeredError }) {
               name='name'
               className={`form__input ${errors.name && 'form__input-invalid'}`}
               minLength='2'
+              maxLength='30'
               type='text'
               value={values.name || ''}
               onFocus={onFocus}

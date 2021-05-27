@@ -47,10 +47,10 @@ function App() {
   }, []);
 
   function handleLogin(email, password) {
-    return MainApi.login(email, password)
+    MainApi.login(email, password)
       .then((data) => {
         if (data) {
-          // localStorage.setItem('jwt', data.jwt);
+          localStorage.setItem('jwt', data.jwt);
           setIsLogin(true);
           history.push('/movies');
           checkToken();
@@ -144,14 +144,12 @@ function App() {
             <Login
               handleLogin={handleLogin}
               loginError={loginError}
-              isLogin={isLogin}
             />
           </Route>
           <Route exact path='/signup'>
             <Register
               handleRegister={handleRegister}
               registeredError={registeredError}
-              isLogin={isLogin}
             />
           </Route>
           {isLogin && (

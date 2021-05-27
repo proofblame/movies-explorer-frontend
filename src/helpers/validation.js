@@ -15,8 +15,8 @@ function validation(name, value) {
   if(name === 'name') {
     if(!value) {
       errors = ({[name]: 'Имя обязательно'})
-    } else if (!/^[a-zA-Z\s-]+$/.test(value)) {
-      errors = ({[name]: 'Имя может содержать только латиницу, пробел или дефис'});
+    } else if (!/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/gm.test(value)) {
+      errors = ({[name]: 'Введите корректное имя (например: Виталий)'});
     } else if (value.length<1) {
       errors = ({[name]: 'Имя не должно быть меньше 2 символов'});
     }

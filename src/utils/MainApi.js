@@ -9,7 +9,7 @@ class MainApi {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
+        'Authorization': `Bearer ${jwt}`,
       },
     }).then((response) => this._checkRequestResult(response));
   }
@@ -19,7 +19,7 @@ class MainApi {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
+        'Authorization': `Bearer ${jwt}`,
       },
       body: JSON.stringify({
         name,
@@ -54,39 +54,36 @@ class MainApi {
       body: JSON.stringify({ email, password }),
     })
       .then((response) => this._checkRequestResult(response))
-      .then((data) => {
-        if (data.jwt) {
-          localStorage.setItem('jwt', data.jwt);
-          this.updateHeaders();
-          return data.jwt;
-        }
-        return Promise.reject(new Error(`Возникла ошибка: ${data.status}`));
-      });
+      // .then((data) => {
+      //   if (data.jwt) {
+      //     localStorage.setItem('jwt', data.jwt);
+      //     this.updateHeaders();
+      //     return data.jwt;
+      //   }
+      //   return Promise.reject(new Error(`Возникла ошибка: ${data.status}`));
+      // });
   }
 
-  updateHeaders() {
-    this._headers = {
-      'Content-Type': 'application/json',
-      Authorization: `${localStorage.getItem('jwt')}`,
-    };
-  }
+  // updateHeaders() {
+  //   this._headers = {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+  //   };
+  // }
 
   getSavedMovies(jwt) {
     return fetch(`${this._baseUrl}/movies`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
+        'Authorization': `Bearer ${jwt}`,
       },
     }).then((response) => this._checkRequestResult(response));
   }
 
-  addMovie(movie, jwt) {
+  addMovie(movie) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         country: movie.country,
         director: movie.director,
@@ -103,13 +100,10 @@ class MainApi {
     }).then((response) => this._checkRequestResult(response));
   }
 
-  removeMovie(movieId, jwt) {
+  removeMovie(movieId) {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
+      headers: this._headers,
     }).then((response) => this._checkRequestResult(response));
   }
 
@@ -126,8 +120,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'http://marokkotv.nomoredomains.icu',
-  // baseUrl: 'http://localhost:3000',
+  // baseUrl: 'http://api.marokkotv.nomoredomains.icu',
+  baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
