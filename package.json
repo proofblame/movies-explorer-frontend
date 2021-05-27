@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "scp -r ./build/* proofblame@130.193.45.230:/home/proofblame/frontend/movies-explorer-frontend/build"
+    "deploy": "scp -r ./build/* proofblame@130.193.45.230:/home/proofblame/frontend/build"
   },
   "eslintConfig": {
     "extends": [

@@ -54,14 +54,14 @@ class MainApi {
       body: JSON.stringify({ email, password }),
     })
       .then((response) => this._checkRequestResult(response))
-      // .then((data) => {
-      //   if (data.jwt) {
-      //     localStorage.setItem('jwt', data.jwt);
-      //     this.updateHeaders();
-      //     return data.jwt;
-      //   }
-      //   return Promise.reject(new Error(`Возникла ошибка: ${data.status}`));
-      // });
+      .then((data) => {
+        if (data.jwt) {
+          localStorage.setItem('jwt', data.jwt);
+          this.updateHeaders();
+          return data.jwt;
+        }
+        return Promise.reject(new Error(`Возникла ошибка: ${data.status}`));
+      });
   }
 
   updateHeaders() {
@@ -126,8 +126,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'https://marokkotv.nomoredomains.icu',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://marokkotv.nomoredomains.icu',
+  // baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,

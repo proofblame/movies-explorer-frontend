@@ -50,7 +50,7 @@ function App() {
     return MainApi.login(email, password)
       .then((data) => {
         if (data) {
-          localStorage.setItem('jwt', data.jwt);
+          // localStorage.setItem('jwt', data.jwt);
           setIsLogin(true);
           history.push('/movies');
           checkToken();
