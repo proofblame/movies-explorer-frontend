@@ -35,7 +35,7 @@ function App() {
           if (userInfo) {
             setCurrentUser(userInfo.data);
             setIsLogin(true);
-            history.push(pathname);
+            // history.push(pathname);
           }
         })
         .catch((err) => {
@@ -113,15 +113,7 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          <Route exact path='/signin'>
-            <Login handleLogin={handleLogin} loginError={loginError} />
-          </Route>
-          <Route exact path='/signup'>
-            <Register
-              handleRegister={handleRegister}
-              registeredError={registeredError}
-            />
-          </Route>
+
           <ProtectedRoute
             exact
             path='/movies'
@@ -147,7 +139,15 @@ function App() {
             isEditError={isEditError}
             isEditDone={isEditDone}
           />
-
+          <Route exact path='/signin'>
+            <Login handleLogin={handleLogin} loginError={loginError} />
+          </Route>
+          <Route exact path='/signup'>
+            <Register
+              handleRegister={handleRegister}
+              registeredError={registeredError}
+            />
+          </Route>
           <Route path='*'>
             <NotFound />
           </Route>
