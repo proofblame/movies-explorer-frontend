@@ -1,0 +1,145 @@
+.about {
+  margin: 0 auto;
+  padding: 110px 70px;
+}
+
+.about__title {
+  margin: 0 auto;
+  width: 100%;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.about__title::after {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  border-bottom: 1px solid #dadada;
+  padding-top: 23px;
+  margin-bottom: 70px;
+}
+
+.about__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  list-style-type: none;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  color: #fff;
+  margin: 0 0 110px 0;
+  padding: 0;
+}
+
+.about__text-title {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  margin: 0 0 26px 0;
+  padding: 0;
+}
+
+.about__text-subtitle {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.about__duration {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  list-style-type: none;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.about__duration-title {
+  margin: 0 0 14px 0;
+  padding: 10px 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  background-color: #303030;
+}
+
+.about__duration-title_active {
+  background-color: #3ddc84;
+  color: #000;
+}
+
+.about__duration-subtitle {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8b8b8b;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 90px 50px;
+  }
+
+  .about__list {
+    margin: 0 0 90px 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about__list {
+    grid-template-columns: 1fr;
+    margin: 0 0 60px 0;
+    gap: 56px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .about {
+    padding: 70px 18px;
+  }
+
+  .about__duration-title {
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .about__duration-subtitle {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about__title::after {
+    margin-bottom: 60px;
+  }
+
+  .about__text-title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 16px 0;
+  }
+
+  .about__text-subtitle {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
